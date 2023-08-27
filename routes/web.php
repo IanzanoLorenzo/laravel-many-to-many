@@ -17,9 +17,7 @@ use App\Http\Controllers\Admin\TypeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::middleware(['auth', 'verified'])->get('/', [DashboardController::class, 'index'])->name('welcome');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
