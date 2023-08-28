@@ -46,6 +46,26 @@
                 </div>
             </div>
         </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <a href="{{ route('admin.technology.index') }}" class="btn card-header h5">Tecnologie</a>
+                        <div class="list-group list-group-flush">
+                            @foreach ($technologies as $technology)                        
+                            <a href="{{ route('admin.technology.show', $technology ) }}" class="list-group-item list-group-item-action"><strong class="me-3">#{{$technology->id}}</strong>{{$technology->name}}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 text-center">
+                    <a href="{{ route('admin.technology.index') }}" class="btn btn-primary mt-4">Lista delle Tecnologie</a>
+                </div>
+                <div class="col-6 text-center">
+                    <a href="{{ route('admin.technology.create') }}" class="btn btn-success mt-4">Nuova Tecnologia</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

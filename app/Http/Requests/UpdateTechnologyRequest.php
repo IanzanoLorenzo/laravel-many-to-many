@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateTechnologyRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateTechnologyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,22 @@ class UpdateTechnologyRequest extends FormRequest
      */
     public function rules()
     {
+        $technologyId = $this->technology->id;
         return [
-            //
+            'name' => [
+                'required',
+                'string',
+                Rule::unique('technologies', 'name')->ignore($technologyId),
+            ],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Il campo "Nome" è obbligatorio',
+            'name.max' => 'Il campo "Nome" non può superare i :max carateri',
+            'name.unique' => 'Questo nome è già assegnato a un\'altra tecnologia'
         ];
     }
 }
