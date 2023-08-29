@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('project_technology', function (Blueprint $table) {
             $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects')->onDelete('set null');;
+            $table->foreign('project_id')->references('id')->on('projects');
 
             $table->unsignedBigInteger('technology_id');
-            $table->foreign('technology_id')->references('id')->on('technologies')->onDelete('set null');;
+            $table->foreign('technology_id')->references('id')->on('technologies');
         });
     }
 

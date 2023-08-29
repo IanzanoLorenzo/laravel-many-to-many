@@ -11,8 +11,13 @@
             <p class="fs-5">
                 {{$project->description}}
             </p>
+            @if (isset($project->technologies))
+                @foreach ($project->technologies as $technology)
+                    <span class="badge bg-primary">{{$technology->name}}</span>
+                @endforeach
+            @endif
             @if ($project->type_id !== null)
-                <p class="fs-5">Tipo: {{ $type->name }}</p>
+                <p class="fs-5">Tipo: {{ $project->type->name }}</p>
             @endif
             @if ($project->image !== null)
                 <img src="{{ asset('storage/'.$project->image) ?? ''}}" alt="immagine non trovata">

@@ -34,12 +34,23 @@
                     </div>
                     <div class="form-group p-3">
                         <label class="control-label">Tipo di Progetto</label>
-                        <select name="type_id" id="type_id" value="{{ old('type_id') ?? $project->type_id }}" class="form-control">
+                        <select name="type_id" id="type_id" class="form-control">
                             <option value="" disabled selected>Seleziona un tipo</option>
                             @foreach ($types as $item)
-                                <option value="{{$item->id}}">{{ $item->name }}</option>
+                                <option value="{{$item->id}}" @selected(old('type_id', $project->type_id) == $item->id)>{{ $item->name }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="form-group p-3">
+                        <div>
+                            <label class="control-label">Tecnologie</label>
+                        </div>
+                        @foreach ($technologies as $technology)
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" name="technologies[]" id="technologies" class="form-check-input" value="{{ $technology->id }}" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : ''}}>
+                                <label class="label-check-control">{{ $technology->name }}</label>
+                            </div>
+                        @endforeach
                     </div>
                     <div class="form-group p-3">
                         <label class="control-label">Immagine</label>
